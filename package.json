@@ -1,0 +1,52 @@
+{
+  "name": "digital_card",
+  "private": true,
+  "packageManager": "pnpm@12.4.2",
+  "type": "module",
+  "engines": {
+    "node": "^22.18.0 || >=24.18.1"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "composer:deploy": "prisma deploy module.ts",
+    "composer:dev": "prisma dev module.ts",
+    "contract:emit": "prisma contract emit",
+    "db:init": "prisma db init",
+    "db:update": "prisma db update",
+    "db:verify": "prisma db verify",
+    "deploy": "pnpm run build && pnpm run composer:deploy",
+    "dev": "prisma db init && tsx watch src/main.ts",
+    "dev:composer": "pnpm run build && pnpm run composer:dev",
+    "migrate": "prisma db migrate",
+    "migration:plan": "prisma migration plan",
+    "migration:show": "prisma migration show",
+    "migration:status": "prisma migration status",
+    "start": "prisma db init && node dist/server.mjs"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.5.1",
+    "@as-integrations/express5": "^1.1.2",
+    "@nestjs/apollo": "^14.0.0",
+    "@nestjs/common": "^12.0.2",
+    "@nestjs/core": "^12.0.2",
+    "@nestjs/graphql": "^14.0.0",
+    "@nestjs/platform-express": "^12.0.2",
+    "@prisma/composer": "0.19.0",
+    "@prisma/composer-prisma-cloud": "0.19.0",
+    "@prisma/orm-postgres": "8.0.0-rc.11",
+    "alchemy": "2.0.0-beta.74",
+    "dotenv": "^17.4.2",
+    "graphql": "^17.0.2",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "temporal-polyfill": "^1.0.4",
+    "ts-morph": "^28.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.2",
+    "prisma": "8.0.0-rc.15",
+    "tsdown": "^0.22.14",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

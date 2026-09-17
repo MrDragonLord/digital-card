@@ -1,0 +1,49 @@
+model Profile {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String
+  github      String?
+  linkedin    String?
+
+  skills     Skill[]
+  experience Experience[]
+  projects   Project[]
+
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}
+
+model Skill {
+  id        Int    @id @default(autoincrement())
+  name      String
+  profileId Int
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+}
+
+model Experience {
+  id           Int       @id @default(autoincrement())
+  company      String
+  position     String
+  startDate    DateTime
+  endDate      DateTime?
+  achievements String[]
+  profileId    Int
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+}
+
+model Project {
+  id        Int    @id @default(autoincrement())
+  name      String
+  url       String
+  profileId Int
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+}
